@@ -1,0 +1,127 @@
+def gv
+def emailHandle
+def buildDir
+def stageDir
+def HCFlag
+def BUILD_PROCESS_FLAG
+def BUILD_AGENT='SAAS_di2inpun0050lv0_yytwint_build'
+def TEST_AGENT='SAAS_di2inpun0212lv0_yytwint_test'
+def STAGE_AGENT='SAAS_di2inpun0212lv0_yytwint_test'
+
+pipeline {
+    agent any
+	parameters {
+		choice(name: 'NXRelease', choices: ['nx2212.latest', 'nx2206.latest'], description: 'Use the latest IP from NXVersion release to create the build.') 
+		string(name: 'UnitPath', defaultValue: '/apps/JenkinsBase/units/Dev', description : 'Path where build unit for the run is to be created.')
+		string(name: 'StagePath', defaultValue: '/apps/JenkinsBase/stage/Dev', description : 'Path where translator worker kits are to be staged.')
+		booleanParam(name: 'HC', defaultValue: false, description : 'Enable horizontal collaboration change package ')
+		string(name: 'CPNumber', defaultValue: '0', description : 'CP number on top of NXRelease against which build and test steps to be executed.')		
+		booleanParam(name: 'Deploy', defaultValue: false, description : 'Deploy staging directory contents to customer setup')
+	}
+    stages {
+		stage ('init'){
+			steps {
+				script{
+					gv = load "TranslatorWorkerScriptstest.groovy"
+					emailHandle = load "email.groovy"
+					buildDir="${params.UnitPath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
+					stageDir="${params.StagePath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
+					HCFlag="${params.HC}"
+				}
+			}
+		}
+		
+		stage('CreateUnit') {
+            agent { label "${BUILD_AGENT}" }
+            steps {
+				script{
+					def CP="${params.CPNumber}"
+					if (("${HCFlag}"=="false") || (("${HCFlag}"=="true") && ("${CP}"!="0"))){
+						gv.createUnit(buildDir) 
+						BUILD_PROCESS_FLAG=true
+					}
+					else {
+						error "you have selected HC option but CP number is not specified correctly so skipping Group build and testing!"
+						BUILD_PROCESS_FLAG=false						
+					}
+				}					
+            }
+        }
+        stage('Build') {
+            agent { label "${BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+						gv.buildUnit(buildDir) 
+				}					
+            }
+        }
+		stage('Test') {
+            agent { label "${TEST_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					gv.TestUnit(buildDir)
+					
+				}					
+            }
+        }
+		stage('StageAndDeploy') {
+            agent { label "${STAGE_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					gv.StageAndDeploy(buildDir,stageDir)
+					
+				}					
+            }
+        }
+		stage('Purge Unit') {
+			agent { label "${BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					gv.Purge("${params.UnitPath}")
+					
+				}					
+            }
+		}
+		stage('Purge Stage') {
+			agent { label "${STAGE_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					gv.Purge("${params.StagePath}")
+					
+				}					
+            }
+		}
+    }
+
+    post {
+		
+        success {
+            echo 'All tasks completed successfully.'
+        }
+		failure {
+			echo 'One or more stages have failed.'
+		}
+		always {
+			script{
+				echo 'echo statement.'	
+				emailHandle.sendSuccessEmail(buildDir,stageDir)
+			}					
+		}
+		
+    }
+}
