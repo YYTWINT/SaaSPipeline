@@ -119,7 +119,7 @@ pipeline {
 		always {
 			script{
 				echo 'echo statement.'	
-				emailHandle.sendSuccessEmail(buildDir,stageDir)
+				//emailHandle.sendSuccessEmail(buildDir,stageDir)
 			}					
 		}
 		
