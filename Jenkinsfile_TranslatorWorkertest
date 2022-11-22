@@ -65,7 +65,8 @@ pipeline {
 				}
             steps {
 				script{
-					gv.TestUnit(buildDir)
+					echo "testing stage"
+					//gv.TestUnit(buildDir)
 					
 				}					
             }

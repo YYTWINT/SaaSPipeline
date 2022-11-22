@@ -44,11 +44,11 @@ CONFIG_FILE_VIS=${STAGE_DIR}/tessUG_vis.config
 RUN_UGTOPV_MULTICAD=${STAGE_DIR}/run_ugtopv_multicad
 RUN_UGTOPV_VIS=${STAGE_DIR}/run_ugtopv_vis
 
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/run_ugtopv_multicad ${RUN_UGTOPV_MULTICAD} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/run_ugtopv_vis ${RUN_UGTOPV_VIS} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/tessUG_multicad.config ${CONFIG_FILE_MULTICAD} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/tessUG_vis.config ${CONFIG_FILE_VIS} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/NXJT_Translator_README.txt ${STAGE_BASE_DIR}/ || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/lnx64/${nxVersion}/run_ugtopv_multicad ${RUN_UGTOPV_MULTICAD} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/lnx64/${nxVersion}/run_ugtopv_vis ${RUN_UGTOPV_VIS} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/lnx64/${nxVersion}/tessUG_multicad.config ${CONFIG_FILE_MULTICAD} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/lnx64/${nxVersion}/tessUG_vis.config ${CONFIG_FILE_VIS} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/lnx64/${nxVersion}/NXJT_Translator_README.txt ${STAGE_BASE_DIR}/ || { exit 1;}
 
 chmod 0755 ${CONFIG_FILE_MULTICAD} || { exit 1;}
 chmod 0755 ${CONFIG_FILE_VIS} || { exit 1;}
