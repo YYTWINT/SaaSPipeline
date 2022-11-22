@@ -18,6 +18,12 @@ EXECUTE_DEPLOY=$4
 STAGE_DIR=${STAGE_BASE_DIR}/TranslatorBinaries/
 SOURCE_PATH=${UNIT_PATH}/lnx64/Products/TranslatorWorker
 
+INIT_DEF_FILE=${UNIT_PATH}/init.def
+stringarray=(`grep DMS_PARENT_BASELINE ${INIT_DEF_FILE} || { exit 1;}`)
+RELEASE_IP=${stringarray[1]}
+orig=${RELEASE_IP}
+IFS=. read -r nxVersion IP <<< ${RELEASE_IP}
+
 if [ ! -d ${STAGE_DIR} ]
 then
 	echo "Creating staging directory ${STAGE_DIR}"
@@ -38,11 +44,11 @@ CONFIG_FILE_VIS=${STAGE_DIR}/tessUG_vis.config
 RUN_UGTOPV_MULTICAD=${STAGE_DIR}/run_ugtopv_multicad
 RUN_UGTOPV_VIS=${STAGE_DIR}/run_ugtopv_vis
 
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/run_ugtopv_multicad ${RUN_UGTOPV_MULTICAD} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/run_ugtopv_vis ${RUN_UGTOPV_VIS} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/tessUG_multicad.config ${CONFIG_FILE_MULTICAD} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/tessUG_vis.config ${CONFIG_FILE_VIS} || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/NXJT_Translator_README.txt ${STAGE_BASE_DIR}/ || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/run_ugtopv_multicad ${RUN_UGTOPV_MULTICAD} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/run_ugtopv_vis ${RUN_UGTOPV_VIS} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/tessUG_multicad.config ${CONFIG_FILE_MULTICAD} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/tessUG_vis.config ${CONFIG_FILE_VIS} || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/${nxVersion}/NXJT_Translator_README.txt ${STAGE_BASE_DIR}/ || { exit 1;}
 
 chmod 0755 ${CONFIG_FILE_MULTICAD} || { exit 1;}
 chmod 0755 ${CONFIG_FILE_VIS} || { exit 1;}
@@ -51,12 +57,7 @@ chmod 0755 ${RUN_UGTOPV_VIS} || { exit 1;}
 
 if [ ${EXECUTE_DEPLOY} == "true" ]
 then
-	INIT_DEF_FILE=${UNIT_PATH}/init.def
-	stringarray=(`grep DMS_PARENT_BASELINE ${INIT_DEF_FILE} || { exit 1;}`)
-	RELEASE_IP=${stringarray[1]}
 	echo "Deploy flag is set to true. Executing deploy step with release IP =${RELEASE_IP}..."
-	
-	orig=${RELEASE_IP}
 	releaseName=${orig//'.'/'_TranslatorWorker.'}
 	
 	cd ${STAGE_BASE_DIR} || { exit 1;}
