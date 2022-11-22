@@ -8,9 +8,9 @@ def createUnit(String buildDir)
 	}
 }
 
-def buildUnit(String buildDir)
+def buildLinuxUnit(String buildDir)
 {
-	echo "Building unit..."
+	echo "Building Linux unit..."
 	script{		
 		def unitFullPath="${buildDir}"
 		sh "chmod +x ./Scripts/lnx64/buildTranslatorWorkerUnittest.sh "
@@ -18,13 +18,31 @@ def buildUnit(String buildDir)
 	}
 }
 
-def TestUnit(String buildDir)
+def buildWinUnit(String buildDir)
 {
-	echo "Executing devtests..."
+	echo "Building Windows unit..."
+	script{		
+		def unitFullPath="${buildDir}"
+		bat """ "./Scripts/wntx64/buildTranslatorWorkerUnittest.bat ${unitFullPath} ${params.CPNumber} ${params.HC} """	
+	}
+}
+
+def TestLinuxUnit(String buildDir)
+{
+	echo "Executing Linux devtests..."
 	script{		
 		def unitFullPath="${buildDir}"
 		sh "chmod +x ./Scripts/lnx64/executeTranslatorWorkerTest.sh "
 		sh "./Scripts/lnx64/executeTranslatorWorkerTest.sh ${unitFullPath}"		
+	}
+}
+
+def TestWinUnit(String buildDir)
+{
+	echo "Executing Windows devtests..."
+	script{		
+		def unitFullPath="${buildDir}"
+		bat """ "./Scripts/wntx64/executeTranslatorWorkerTest.bat ${unitFullPath} """
 	}
 }
 

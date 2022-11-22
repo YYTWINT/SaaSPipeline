@@ -11,7 +11,7 @@ def STAGE_AGENT='SAAS_di2inpun0212lv0_yytwint_test'
 pipeline {
     agent any
 	parameters {
-		choice(name: 'NXRelease', choices: ['nx2212.latest', 'nx2206.latest'], description: 'Use the latest IP from NXVersion release to create the build.') 
+		choice(name: 'NXRelease', choices: ['nx2306.latest', 'nx2212.latest', 'nx2206.latest'], description: 'Use the latest IP from NXVersion release to create the build.') 
 		string(name: 'UnitPath', defaultValue: '/apps/JenkinsBase/units/Dev', description : 'Path where build unit for the run is to be created.')
 		string(name: 'StagePath', defaultValue: '/apps/JenkinsBase/stage/Dev', description : 'Path where translator worker kits are to be staged.')
 		booleanParam(name: 'HC', defaultValue: false, description : 'Enable horizontal collaboration change package ')
@@ -54,7 +54,8 @@ pipeline {
 				}
             steps {
 				script{
-						gv.buildUnit(buildDir) 
+						//gv.buildLinuxUnit(buildDir)
+						gv.buildWinUnit(buildDir)
 				}					
             }
         }
@@ -66,8 +67,8 @@ pipeline {
             steps {
 				script{
 					echo "testing stage"
-					//gv.TestUnit(buildDir)
-					
+					//gv.TestLinuxUnit(buildDir)
+					  gv.TestWinUnit(buildDir)
 				}					
             }
         }
