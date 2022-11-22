@@ -5,6 +5,7 @@ def stageDir
 def HCFlag
 def BUILD_PROCESS_FLAG
 def BUILD_AGENT='SAAS_di2inpun0050lv0_yytwint_build'
+def WIN_BUILD_AGENT='SAAS_di2inpun0112wv0_yytwint_build_wntx64'
 def TEST_AGENT='SAAS_di2inpun0212lv0_yytwint_test'
 def STAGE_AGENT='SAAS_di2inpun0212lv0_yytwint_test'
 
@@ -47,19 +48,30 @@ pipeline {
 				}					
             }
         }
-        stage('Build') {
+        stage('Linux Build') {
             agent { label "${BUILD_AGENT}" }
 			when {
 					expression { "${BUILD_PROCESS_FLAG}"=="true" }
 				}
             steps {
 				script{
+						echo 'linux build'
 						//gv.buildLinuxUnit(buildDir)
-						gv.buildWinUnit(buildDir)
 				}					
             }
         }
-		stage('Test') {
+		stage('Windows Build') {
+            agent { label "${WIN_BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+						gv.buildWinUnit(buildDir)
+				}					
+            }
+        }		
+		stage('Linux Test') {
             agent { label "${TEST_AGENT}" }
 			when {
 					expression { "${BUILD_PROCESS_FLAG}"=="true" }
@@ -68,6 +80,16 @@ pipeline {
 				script{
 					echo "testing stage"
 					//gv.TestLinuxUnit(buildDir)
+				}					
+            }
+        }
+		stage('Window Test') {
+            agent { label "${WIN_BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
 					  gv.TestWinUnit(buildDir)
 				}					
             }
