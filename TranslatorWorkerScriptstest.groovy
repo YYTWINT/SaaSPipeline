@@ -1,10 +1,18 @@
-def createUnit(String buildDir)
+def createLinuxUnit(String buildDir)
 {
 	echo "Creating unit..."
 	script{		
 		def unitFullPath="${buildDir}"
 		sh "chmod +x ./Scripts/lnx64/createTranslatorWorkerUnittest.sh "
 		sh "./Scripts/lnx64/createTranslatorWorkerUnittest.sh ${params.NXRelease} ${unitFullPath} ${params.HC}"		
+	}
+}
+def createWindowUnit(String buildDir)
+{
+	echo "Creating unit..."
+	script{		
+		def unitFullPath="${buildDir}"
+		bat """ "./Scripts/wntx64/createTranslatorWorkerUnittest.bat ${params.NXRelease} ${unitFullPath} ${params.HC} """			
 	}
 }
 

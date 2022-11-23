@@ -1,7 +1,9 @@
 def gv
 def emailHandle
-def buildDir
-def stageDir
+def LinuxbuildDir
+def LinuxstageDir
+def WindowbuildDir
+def WindowstageDir
 def HCFlag
 def BUILD_PROCESS_FLAG
 def BUILD_AGENT='SAAS_di2inpun0050lv0_yytwint_build'
@@ -13,8 +15,10 @@ pipeline {
     agent any
 	parameters {
 		choice(name: 'NXRelease', choices: ['nx2306.latest', 'nx2212.latest', 'nx2206.latest'], description: 'Use the latest IP from NXVersion release to create the build.') 
-		string(name: 'UnitPath', defaultValue: '/apps/JenkinsBase/units/Dev', description : 'Path where build unit for the run is to be created.')
-		string(name: 'StagePath', defaultValue: '/apps/JenkinsBase/stage/Dev', description : 'Path where translator worker kits are to be staged.')
+		string(name: 'LinuxUnitPath', defaultValue: '/apps/JenkinsBase/units/Dev', description : 'Path where Linux build unit for the run is to be created.')
+		string(name: 'WindowUnitPath', defaultValue: 'C:\workdir\jenkins\units\Dev', description : 'Path where window build unit for the run is to be created.')
+		string(name: 'LinuxStagePath', defaultValue: '/apps/JenkinsBase/stage/Dev', description : 'Path where translator worker kits are to be staged.')
+		string(name: 'WindowStagePath', defaultValue: 'C:\workdir\jenkins\stage\Dev', description : 'Path where translator worker kits are to be staged.')
 		booleanParam(name: 'HC', defaultValue: false, description : 'Enable horizontal collaboration change package ')
 		string(name: 'CPNumber', defaultValue: '0', description : 'CP number on top of NXRelease against which build and test steps to be executed.')		
 		booleanParam(name: 'Deploy', defaultValue: false, description : 'Deploy staging directory contents to customer setup')
@@ -25,20 +29,38 @@ pipeline {
 				script{
 					gv = load "TranslatorWorkerScriptstest.groovy"
 					emailHandle = load "email.groovy"
-					buildDir="${params.UnitPath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
-					stageDir="${params.StagePath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
+					LinuxbuildDir="${params.LinuxUnitPath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
+					LinuxstageDir="${params.LinuxStagePath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
+					WindowbuildDir="${params.WindowUnitPath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
+					WindowstageDir="${params.WindowStagePath}/${params.NXRelease}_TranslatorWorker_${BUILD_TIMESTAMP}"
 					HCFlag="${params.HC}"
 				}
 			}
 		}
 		
-		stage('CreateUnit') {
+		stage('Linux CreateUnit') {
             agent { label "${BUILD_AGENT}" }
             steps {
 				script{
 					def CP="${params.CPNumber}"
 					if (("${HCFlag}"=="false") || (("${HCFlag}"=="true") && ("${CP}"!="0"))){
-						gv.createUnit(buildDir) 
+						//gv.createLinuxUnit(LinuxbuildDir) 
+						BUILD_PROCESS_FLAG=true
+					}
+					else {
+						error "you have selected HC option but CP number is not specified correctly so skipping Group build and testing!"
+						BUILD_PROCESS_FLAG=false						
+					}
+				}					
+            }
+        }
+		stage('Window CreateUnit') {
+            agent { label "${WIN_BUILD_AGENT}" }
+            steps {
+				script{
+					def CP="${params.CPNumber}"
+					if (("${HCFlag}"=="false") || (("${HCFlag}"=="true") && ("${CP}"!="0"))){
+						gv.createWindowUnit(WindowbuildDir) 
 						BUILD_PROCESS_FLAG=true
 					}
 					else {
@@ -56,7 +78,7 @@ pipeline {
             steps {
 				script{
 						echo 'linux build'
-						//gv.buildLinuxUnit(buildDir)
+						//gv.buildLinuxUnit(LinuxbuildDir)
 				}					
             }
         }
@@ -67,7 +89,7 @@ pipeline {
 				}
             steps {
 				script{
-						gv.buildWinUnit(buildDir)
+						gv.buildWinUnit(WindowbuildDir)
 				}					
             }
         }		
@@ -79,7 +101,7 @@ pipeline {
             steps {
 				script{
 					echo "testing stage"
-					//gv.TestLinuxUnit(buildDir)
+					//gv.TestLinuxUnit(LinuxbuildDir)
 				}					
             }
         }
@@ -90,7 +112,7 @@ pipeline {
 				}
             steps {
 				script{
-					  gv.TestWinUnit(buildDir)
+					  gv.TestWinUnit(WindowbuildDir)
 				}					
             }
         }
@@ -101,7 +123,8 @@ pipeline {
 				}
             steps {
 				script{
-					gv.StageAndDeploy(buildDir,stageDir)
+					echo "linux stagging"
+					//gv.StageAndDeploy(LinuxbuildDir,LinuxstageDir)
 					
 				}					
             }
@@ -113,7 +136,8 @@ pipeline {
 				}
             steps {
 				script{
-					gv.Purge("${params.UnitPath}")
+					echo "linux purge unit"
+					//gv.Purge("${params.LinuxUnitPath}")
 					
 				}					
             }
@@ -125,7 +149,8 @@ pipeline {
 				}
             steps {
 				script{
-					gv.Purge("${params.StagePath}")
+					echo "linux purge group"
+					gv.Purge("${params.LinuxStagePath}")
 					
 				}					
             }
@@ -143,7 +168,7 @@ pipeline {
 		always {
 			script{
 				echo 'echo statement.'	
-				//emailHandle.sendSuccessEmail(buildDir,stageDir)
+				//emailHandle.sendSuccessEmail(LinuxbuildDir,LinuxstageDir)
 			}					
 		}
 		
