@@ -7,7 +7,7 @@ SET UNIT_BAT="C:\apps\devop_tools\UDU\tools\bin\wnt\unit.bat"
 if "%HC_FLAG%" equ "false" 
 (
   call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
-  echo "here in windows hc false"
+  echo "%UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y"
 )
 else
 (
