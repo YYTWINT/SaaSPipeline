@@ -31,7 +31,7 @@ def buildWinUnit(String buildDir)
 	echo "Building Windows unit..."
 	script{		
 		def unitFullPath="${buildDir}"
-		bat """ "./Scripts/wntx64/buildTranslatorWorkerUnittest.bat ${unitFullPath} ${params.CPNumber} ${params.HC} """	
+		bat """ ./Scripts/wntx64/buildTranslatorWorkerUnittest.bat ${unitFullPath} ${params.CPNumber} ${params.HC} """	
 	}
 }
 
@@ -50,7 +50,7 @@ def TestWinUnit(String buildDir)
 	echo "Executing Windows devtests..."
 	script{		
 		def unitFullPath="${buildDir}"
-		bat """ "./Scripts/wntx64/executeTranslatorWorkerTest.bat ${unitFullPath} """
+		bat """ ./Scripts/wntx64/executeTranslatorWorkerTest.bat ${unitFullPath} """
 	}
 }
 
