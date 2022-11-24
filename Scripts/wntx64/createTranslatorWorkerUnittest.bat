@@ -4,13 +4,9 @@ SET NX_RELEASE=%1
 SET UNIT_PATH=%2
 SET HC_FLAG= %3
 SET UNIT_BAT="C:\apps\devop_tools\UDU\tools\bin\wnt\unit.bat"
-echo %NX_RELEASE%
-echo %UNIT_BAT%
-echo %UNIT_PATH%
-echo %HC_FLAG%
+
 
 if %HC_FLAG%==false (
-	echo %HC_FLAG% 
 	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
 ) else (
 	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
