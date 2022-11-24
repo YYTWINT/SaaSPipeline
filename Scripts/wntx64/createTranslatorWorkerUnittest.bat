@@ -2,8 +2,8 @@
 
 SET NX_RELEASE=%1
 SET UNIT_PATH=%2
-SET HC_FLAG= %3
-SET UNIT_BAT="C:\apps\devop_tools\UDU\tools\bin\wnt\unit.bat"
+SET HC_FLAG=%3
+SET UNIT_BAT="C:\\apps\\devop_tools\\UDU\\tools\\bin\\wnt\\unit.bat"
 
 
 if %HC_FLAG%==false (
