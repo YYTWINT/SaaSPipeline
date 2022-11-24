@@ -12,7 +12,7 @@ def createWindowUnit(String buildDir)
 	echo "Creating unit..."
 	script{		
 		def unitFullPath="${buildDir}"
-		bat """ "./Scripts/wntx64/createTranslatorWorkerUnittest.bat ${params.NXRelease} ${unitFullPath} ${params.HC} """			
+		bat """ ./Scripts/wntx64/createTranslatorWorkerUnittest.bat ${params.NXRelease} ${unitFullPath} ${params.HC} """			
 	}
 }
 
