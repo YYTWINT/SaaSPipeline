@@ -46,5 +46,5 @@ xcopy /s %CUSTOMER_ARTIFACTS_DIR%/wntx64/%NXVersion%/NXJT_Translator_README.txt 
 
 rem copy the staging folder to common location
 SET FolderName=%NXVersion%_TranslatorWorker.%NXIP%
-if not exist "\\plm\pnnas\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64" mkdir "\\plm\pnnas\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64"
-xcopy /s "%STAGE_BASE_DIR%/wntx64/" "\\plm\pnnas\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64\"
+if not exist "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64" mkdir "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64"
+xcopy /s "%STAGE_BASE_DIR%/wntx64/" "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64\"
