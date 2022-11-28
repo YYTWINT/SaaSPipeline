@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 4 ]
+if [ $# -ne 3 ]
 then
         echo "stage_and_deploy_artifacts.sh called with incorrect number of arguments."
         echo "stage_and_deploy_artifacts.sh <unitPaht> <StageBaseDir> <CustomerArtifactDir> <DeployFlag>"
@@ -13,7 +13,6 @@ echo "Executing stage_and_copy_artifacts.sh..."
 UNIT_PATH=$1
 STAGE_BASE_DIR=$2
 CUSTOMER_ARTIFACTS_DIR=$3
-EXECUTE_DEPLOY=$4
 
 INIT_DEF_FILE=${UNIT_PATH}/init.def
 stringarray=(`grep DMS_PARENT_BASELINE ${INIT_DEF_FILE} || { exit 1;}`)
