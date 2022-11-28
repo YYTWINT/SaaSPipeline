@@ -112,11 +112,12 @@ pipeline {
 				}
             steps {
 				script{
-					  gv.TestWinUnit(WindowbuildDir)
+					  echo "testing stage"
+					  //gv.TestWinUnit(WindowbuildDir)
 				}					
             }
         }
-		stage('StageAndDeploy') {
+		stage('LinuxStageAndCopy') {
             agent { label "${STAGE_AGENT}" }
 			when {
 					expression { "${BUILD_PROCESS_FLAG}"=="true" }
@@ -124,7 +125,32 @@ pipeline {
             steps {
 				script{
 					echo "linux stagging"
-					//gv.StageAndDeploy(LinuxbuildDir,LinuxstageDir)
+					gv.LinuxStageAndCopy(LinuxbuildDir,LinuxstageDir)
+					
+				}					
+            }
+        }
+		stage('WinStageAndCopy') {
+            agent { label "${WIN_BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					echo "Window stagging"
+					gv.WinStageAndCopy(WindowbuildDir,WindowstageDir)
+					
+				}					
+            }
+        }
+		stage('DeployProcess') {
+            agent { label "${STAGE_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					gv.DeployProcess(LinuxbuildDir)
 					
 				}					
             }

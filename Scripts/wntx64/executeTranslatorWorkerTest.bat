@@ -12,7 +12,7 @@ if %casesFailed% NEQ 0 (
 	call %UNIT_BAT% run %UNIT_PATH% devtest runfails -p 6 -keep -local -parent
 	for /F "tokens=2 delims=:" %%a in ('findstr /I "Number of tests:" "%UNIT_PATH%\dt\runs\devtestLastRunFails.txt"') do set "casesFailed=%%a"  
 	if %casesFailed% NEQ 0 (
-		echo "Number of auto test cases failed = $casesFailed...Exiting with error."
+		echo "Number of auto test cases failed = %casesFailed%...Exiting with error."
 		exit 1
 	)
 ) else (

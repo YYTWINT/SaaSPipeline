@@ -14,8 +14,8 @@ ARTIFACTS_DIR=$3
 EXECUTE_DEPLOY=$4
 
 # Run customer specific stage script to stage artifacts
-chmod 0755 ${ARTIFACTS_DIR}/lnx64/stage_and_deploy_artifacts.sh || { exit 1;}
-${ARTIFACTS_DIR}/lnx64/stage_and_deploy_artifacts.sh ${UNIT_PATH} ${STAGE_BASE_DIR} ${ARTIFACTS_DIR} ${EXECUTE_DEPLOY} || { exit 1;}
+chmod 0755 ${ARTIFACTS_DIR}/lnx64/stage_and_copy_artifacts.sh || { exit 1;}
+${ARTIFACTS_DIR}/lnx64/stage_and_copy_artifacts.sh ${UNIT_PATH} ${STAGE_BASE_DIR} ${ARTIFACTS_DIR} ${EXECUTE_DEPLOY} || { exit 1;}
 
 
 

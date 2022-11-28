@@ -54,7 +54,7 @@ def TestWinUnit(String buildDir)
 	}
 }
 
-def StageAndDeploy(String buildDir, String stageDir)
+def LinuxStageAndCopy(String buildDir, String stageDir)
 {
 	echo "Executing stage and deploy..."
 	script{		
@@ -62,8 +62,32 @@ def StageAndDeploy(String buildDir, String stageDir)
 		def stagePath="${stageDir}"
 		def deployFlag="${params.Deploy}"
 		
-		sh "chmod +x ./Scripts/lnx64/stageAndDeployTranslatorWorkerUnit.sh "
-		sh "./Scripts/lnx64/stageAndDeployTranslatorWorkerUnit.sh ${unitFullPath} ${stagePath} 'Artifacts' ${deployFlag}"		
+		sh "chmod +x ./Scripts/lnx64/stageAndcopy.sh "
+		sh "./Scripts/lnx64/stageAndcopy.sh ${unitFullPath} ${stagePath} 'Artifacts' ${deployFlag}"		
+	}
+}
+
+def WinStageAndCopy(String buildDir, String stageDir)
+{
+	echo "Executing stage and deploy..."
+	script{		
+		def unitFullPath="${buildDir}"
+		def stagePath="${stageDir}"
+		def deployFlag="${params.Deploy}"
+		
+		bat """ ./Artifacts/wntx64/stageAndcopy.bat ${unitFullPath} ${stagePath} 'Artifacts'"		
+	}
+}
+
+def DeployProcess(String buildDir)
+{
+	echo "Executing deploy..."
+	script{		
+		def unitFullPath="${buildDir}"
+		def deployFlag="${params.Deploy}"
+		
+		sh "chmod +x ./Scripts/lnx64/DeployTranslatorWorkerUnit.sh"
+		sh "./Scripts/lnx64/DeployTranslatorWorkerUnit.sh ${unitFullPath} ${deployFlag}"			
 	}
 }
 
