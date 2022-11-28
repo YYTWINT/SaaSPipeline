@@ -73,7 +73,7 @@ def WinStageAndCopy(String buildDir, String stageDir)
 		def unitFullPath="${buildDir}"
 		def stagePath="${stageDir}"
 		
-		bat """ ./Artifacts/wntx64/stage_and_copy_artifacts.bat ${unitFullPath} ${stagePath} 'Artifacts'"		
+		bat """ ./Artifacts/wntx64/stage_and_copy_artifacts.bat ${unitFullPath} ${stagePath} 'Artifacts' """		
 	}
 }
 
