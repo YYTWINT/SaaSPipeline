@@ -60,10 +60,9 @@ def LinuxStageAndCopy(String buildDir, String stageDir)
 	script{		
 		def unitFullPath="${buildDir}"
 		def stagePath="${stageDir}"
-		def deployFlag="${params.Deploy}"
 		
 		sh "chmod +x ./Scripts/lnx64/stageAndcopy.sh "
-		sh "./Scripts/lnx64/stageAndcopy.sh ${unitFullPath} ${stagePath} 'Artifacts' ${deployFlag}"		
+		sh "./Scripts/lnx64/stageAndcopy.sh ${unitFullPath} ${stagePath} 'Artifacts'"		
 	}
 }
 
@@ -73,7 +72,6 @@ def WinStageAndCopy(String buildDir, String stageDir)
 	script{		
 		def unitFullPath="${buildDir}"
 		def stagePath="${stageDir}"
-		def deployFlag="${params.Deploy}"
 		
 		bat """ ./Artifacts/wntx64/stageAndcopy.bat ${unitFullPath} ${stagePath} 'Artifacts'"		
 	}
