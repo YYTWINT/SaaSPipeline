@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 4 ]
+if [ $# -ne 2 ]
 then
         echo "stageAndDeployTranslatorWorkerUnit.sh called with incorrect number of arguments."
         echo "stageAndDeployTranslatorWorkerUnit.sh <UnitPath> <StageDir> <ArtifactsDir> <DeployFlag>"

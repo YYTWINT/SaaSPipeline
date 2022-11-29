@@ -155,7 +155,7 @@ pipeline {
 				}					
             }
         }
-		stage('Purge Unit') {
+		stage('Purge Linux Unit') {
 			agent { label "${BUILD_AGENT}" }
 			when {
 					expression { "${BUILD_PROCESS_FLAG}"=="true" }
@@ -163,12 +163,12 @@ pipeline {
             steps {
 				script{
 					echo "linux purge unit"
-					//gv.Purge("${params.LinuxUnitPath}")
+					//gv.LinuxPurge("${params.LinuxUnitPath}")
 					
 				}					
             }
 		}
-		stage('Purge Stage') {
+		stage('Purge Linux Stage') {
 			agent { label "${STAGE_AGENT}" }
 			when {
 					expression { "${BUILD_PROCESS_FLAG}"=="true" }
@@ -176,7 +176,33 @@ pipeline {
             steps {
 				script{
 					echo "linux purge group"
-					gv.Purge("${params.LinuxStagePath}")
+					gv.LinuxPurge("${params.LinuxStagePath}")
+					
+				}					
+            }
+		}
+		stage('Purge window Unit') {
+			agent { label "${WIN_BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					echo "Window purge unit"
+					//gv.WinPurge("${params.WindowUnitPath}")
+					
+				}					
+            }
+		}
+		stage('Purge window Stage') {
+			agent { label "${WIN_BUILD_AGENT}" }
+			when {
+					expression { "${BUILD_PROCESS_FLAG}"=="true" }
+				}
+            steps {
+				script{
+					echo "Window purge group"
+					gv.WinPurge("${params.WindowStagePath}")
 					
 				}					
             }

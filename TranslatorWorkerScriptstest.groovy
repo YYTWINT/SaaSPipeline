@@ -73,7 +73,7 @@ def WinStageAndCopy(String buildDir, String stageDir)
 		def unitFullPath="${buildDir}"
 		def stagePath="${stageDir}"
 		
-		bat """ ./Artifacts/wntx64/stage_and_copy_artifacts.bat ${unitFullPath} ${stagePath} 'Artifacts' """		
+		bat """ ./Artifacts/wntx64/stage_and_copy_artifacts.bat ${unitFullPath} ${stagePath} Artifacts """		
 	}
 }
 
@@ -89,13 +89,22 @@ def DeployProcess(String buildDir)
 	}
 }
 
-def Purge(String dirName)
+def LinuxPurge(String dirName)
 {
 	echo "Executing Purge ..."
 	script{		
 		def fullPath="${dirName}"
 		sh "chmod +x ./Scripts/lnx64/purge.sh "
 		sh "./Scripts/lnx64/purge.sh ${fullPath}"		
+	}
+}
+
+def WinPurge(String dirName)
+{
+	echo "Executing Purge ..."
+	script{		
+		def fullPath="${dirName}"
+		bat """ ./Scripts/wntx64/purge.bat ${fullPath} """		
 	}
 }
 
