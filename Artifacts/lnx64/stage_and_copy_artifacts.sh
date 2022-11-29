@@ -21,7 +21,7 @@ orig=${RELEASE_IP}
 IFS=. read -r nxVersion IP <<< ${RELEASE_IP}
 
 #############################################
-#Linux Staging
+#Linux Staging and copy
 #############################################
 
 LNX_STAGE_DIR=${STAGE_BASE_DIR}/lnx64/TranslatorBinaries/
@@ -68,3 +68,13 @@ then
 	chmod -R 0777 ${commonLocation} || { exit 1;}
 fi
 cp -r ${STAGE_BASE_DIR}/lnx64/ ${commonLocation}
+
+#################################################################
+##windows copy
+#################################################################
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/run_ugtopv_multicad.bat ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/run_ugtopv_vis.bat ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/tessUG_multicad.config ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/tessUG_vis.config ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/NXJT_Translator_README.txt ${commonLocation}/wntx64/ || { exit 1;}
+

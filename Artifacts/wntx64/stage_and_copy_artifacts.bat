@@ -32,16 +32,17 @@ IF EXIST "%Win_STAGE_DIR%debug" DEL /F /Q "%Win_STAGE_DIR%debug"
 IF EXIST "%Win_STAGE_DIR%license" DEL /F /Q "%Win_STAGE_DIR%license"
 IF EXIST "%Win_STAGE_DIR%dockerfile" DEL /F /Q "%Win_STAGE_DIR%dockerfile"
 
-SET CONFIG_FILE_MULTICAD_WIN="%Win_STAGE_DIR%\tessUG_multicad.config"
-SET CONFIG_FILE_VIS_WIN="%Win_STAGE_DIR%\tessUG_vis.config"
-SET RUN_UGTOPV_MULTICAD_WIN="%Win_STAGE_DIR%\run_ugtopv_multicad.bat"
-SET RUN_UGTOPV_VIS_WIN="%Win_STAGE_DIR%\run_ugtopv_vis.bat"
+REM unable to access artifact directly so performing the task in linux script
+REM SET CONFIG_FILE_MULTICAD_WIN="%Win_STAGE_DIR%\tessUG_multicad.config"
+REM SET CONFIG_FILE_VIS_WIN="%Win_STAGE_DIR%\tessUG_vis.config"
+REM SET RUN_UGTOPV_MULTICAD_WIN="%Win_STAGE_DIR%\run_ugtopv_multicad.bat"
+REM SET RUN_UGTOPV_VIS_WIN="%Win_STAGE_DIR%\run_ugtopv_vis.bat"
 
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_multicad.bat" "%RUN_UGTOPV_MULTICAD_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_vis.bat" "%RUN_UGTOPV_VIS_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_multicad.config" "%CONFIG_FILE_MULTICAD_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_vis.config" "%CONFIG_FILE_VIS_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\NXJT_Translator_README.txt" "%STAGE_BASE_DIR%\wntx64\"
+REM xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_multicad.bat" "%RUN_UGTOPV_MULTICAD_WIN%"
+REM xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_vis.bat" "%RUN_UGTOPV_VIS_WIN%"
+REM xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_multicad.config" "%CONFIG_FILE_MULTICAD_WIN%"
+REM xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_vis.config" "%CONFIG_FILE_VIS_WIN%"
+REM xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\NXJT_Translator_README.txt" "%STAGE_BASE_DIR%\wntx64\"
 
 rem copy the staging folder to common location
 SET FolderName="%NXVersion%_TranslatorWorker.%NXIP%"

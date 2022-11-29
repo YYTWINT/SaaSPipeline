@@ -1,6 +1,6 @@
 @echo off
 
-SET WORK_DIR=$1
+SET WORK_DIR=%1
 SET NumberOfBackups=5
 
 echo "Purging dir %WORK_DIR%"
