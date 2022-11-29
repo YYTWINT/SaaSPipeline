@@ -17,7 +17,7 @@ RELEASE_IP=${stringarray[1]}
 orig=${RELEASE_IP}
 IFS=. read -r nxVersion IP <<< ${RELEASE_IP}
 releaseName=${orig//'.'/'_TranslatorWorker.'}
-commonLocation=//plm/pnnas/Data_Exchange/SaaS_distributions/NXJT/${releaseName}/
+commonLocation=//plm/pnnas/ppic/Data_Exchange/SaaS_distributions/NXJT/${releaseName}/
 
 if [ ${EXECUTE_DEPLOY} == "true" ]
 then
