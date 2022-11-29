@@ -60,7 +60,7 @@ chmod 0755 ${RUN_UGTOPV_VIS} || { exit 1;}
 
 #copy the staging folder to common location
 FolderName=${orig//'.'/'_TranslatorWorker.'}
-commonLocation=//plm/pnnas/ppic/Data_Exchange/SaaS_distributions/NXJT/${FolderName}/lnx64/
+commonLocation=//plm/pnnas/ppic/Data_Exchange/SaaS_distributions/NXJT/${FolderName}/
 if [ ! -d ${commonLocation} ]
 then
 	echo "Creating common location directory ${commonLocation}"
