@@ -44,7 +44,7 @@ pipeline {
 				script{
 					def CP="${params.CPNumber}"
 					if (("${HCFlag}"=="false") || (("${HCFlag}"=="true") && ("${CP}"!="0"))){
-						//gv.createLinuxUnit(LinuxbuildDir) 
+						gv.createLinuxUnit(LinuxbuildDir) 
 						BUILD_PROCESS_FLAG=true
 					}
 					else {
@@ -78,7 +78,7 @@ pipeline {
             steps {
 				script{
 						echo 'linux build'
-						//gv.buildLinuxUnit(LinuxbuildDir)
+						gv.buildLinuxUnit(LinuxbuildDir)
 				}					
             }
         }
@@ -138,7 +138,7 @@ pipeline {
             steps {
 				script{
 					echo "linux stagging"
-					//gv.LinuxStageAndCopy(LinuxbuildDir,LinuxstageDir)
+					gv.LinuxStageAndCopy(LinuxbuildDir,LinuxstageDir)
 					
 				}					
             }
@@ -189,7 +189,7 @@ pipeline {
             steps {
 				script{
 					echo "Window purge unit"
-					//gv.WinPurge("${params.WindowUnitPath}")
+					gv.WinPurge("${params.WindowUnitPath}")
 					
 				}					
             }
