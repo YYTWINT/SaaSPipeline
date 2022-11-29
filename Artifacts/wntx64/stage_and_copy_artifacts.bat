@@ -38,10 +38,10 @@ SET CONFIG_FILE_VIS_WIN="%Win_STAGE_DIR%\tessUG_vis.config"
 SET RUN_UGTOPV_MULTICAD_WIN="%Win_STAGE_DIR%\run_ugtopv_multicad.bat"
 SET RUN_UGTOPV_VIS_WIN="%Win_STAGE_DIR%\run_ugtopv_vis.bat"
 
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_multicad.bat" "%RUN_UGTOPV_MULTICAD_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_vis.bat" "%RUN_UGTOPV_VIS_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_multicad.config" "%CONFIG_FILE_MULTICAD_WIN%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_vis.config" "%CONFIG_FILE_VIS_WIN%"
+xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_multicad.bat" "%Win_STAGE_DIR%"
+xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_vis.bat" "%Win_STAGE_DIR%"
+xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_multicad.config" "%Win_STAGE_DIR%"
+xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_vis.config" "%Win_STAGE_DIR%"
 xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\NXJT_Translator_README.txt" "%STAGE_BASE_DIR%\wntx64\"
 
 rem copy the staging folder to common location
