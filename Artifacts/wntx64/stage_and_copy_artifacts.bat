@@ -25,7 +25,7 @@ SET Win_SOURCE_PATH=%UNIT_PATH%\wntx64\Products\TranslatorWorker
 if not exist "%Win_STAGE_DIR%" mkdir "%Win_STAGE_DIR%"
 
 rem Copy all 
-xcopy /s /i "%Win_SOURCE_PATH%" "%Win_STAGE_DIR%"
+xcopy /s /i /Y "%Win_SOURCE_PATH%" "%Win_STAGE_DIR%"
 
 rem Then remove selected iteams
 IF EXIST "%Win_STAGE_DIR%debug" DEL /F /Q "%Win_STAGE_DIR%debug"
@@ -38,13 +38,13 @@ SET CONFIG_FILE_VIS_WIN="%Win_STAGE_DIR%\tessUG_vis.config"
 SET RUN_UGTOPV_MULTICAD_WIN="%Win_STAGE_DIR%\run_ugtopv_multicad.bat"
 SET RUN_UGTOPV_VIS_WIN="%Win_STAGE_DIR%\run_ugtopv_vis.bat"
 
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_multicad.bat" "%Win_STAGE_DIR%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_vis.bat" "%Win_STAGE_DIR%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_multicad.config" "%Win_STAGE_DIR%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_vis.config" "%Win_STAGE_DIR%"
-xcopy /s /i "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\NXJT_Translator_README.txt" "%STAGE_BASE_DIR%\wntx64\"
+xcopy /s /i /Y "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_multicad.bat" "%Win_STAGE_DIR%"
+xcopy /s /i /Y "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\run_ugtopv_vis.bat" "%Win_STAGE_DIR%"
+xcopy /s /i /Y "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_multicad.config" "%Win_STAGE_DIR%"
+xcopy /s /i /Y "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\tessUG_vis.config" "%Win_STAGE_DIR%"
+xcopy /s /i /Y "%CUSTOMER_ARTIFACTS_DIR%\wntx64\%NXVersion%\NXJT_Translator_README.txt" "%STAGE_BASE_DIR%\wntx64\"
 
 rem copy the staging folder to common location
 SET FolderName="%NXVersion%_TranslatorWorker.%NXIP%"
 if not exist "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64" mkdir "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64"
-xcopy /s /i "%STAGE_BASE_DIR%\wntx64\" "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64\"
+xcopy /s /i /Y "%STAGE_BASE_DIR%\wntx64\" "\\plm\pnnas\ppic\Data_Exchange\SaaS_distributions\NXJT\%FolderName%\wntx64\"
