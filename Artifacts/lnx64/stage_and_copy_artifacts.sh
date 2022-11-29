@@ -69,12 +69,12 @@ then
 fi
 cp -r ${STAGE_BASE_DIR}/lnx64/ ${commonLocation}
 
-#################################################################
-##windows copy
-#################################################################
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/run_ugtopv_multicad.bat ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/run_ugtopv_vis.bat ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/tessUG_multicad.config ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/tessUG_vis.config ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
-cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/NXJT_Translator_README.txt ${commonLocation}/wntx64/ || { exit 1;}
+# #################################################################
+# ##windows copy
+# #################################################################
+# cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/run_ugtopv_multicad.bat ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+# cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/run_ugtopv_vis.bat ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+# cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/tessUG_multicad.config ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+# cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/tessUG_vis.config ${commonLocation}wntx64/TranslatorBinaries/ || { exit 1;}
+# cp -f ${CUSTOMER_ARTIFACTS_DIR}/wntx64/${nxVersion}/NXJT_Translator_README.txt ${commonLocation}/wntx64/ || { exit 1;}
 

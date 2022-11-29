@@ -9,7 +9,7 @@ then
 fi
 
 UNIT_PATH=$1
-EXECUTE_DEPLOY=$4
+EXECUTE_DEPLOY=$2
 
 INIT_DEF_FILE=${UNIT_PATH}/init.def
 stringarray=(`grep DMS_PARENT_BASELINE ${INIT_DEF_FILE} || { exit 1;}`)
