@@ -40,21 +40,21 @@ then
 	cd -
 	
 	############################################
-	#Windows Deploy
+	#Windows Deploy- don't need for current artifacts
 	############################################
-	echo "Deploy flag is set to true. Executing deploy step with release IP =${RELEASE_IP} in Windows..."
-	cd ${commonLocation}/wntx64 || { exit 1;}
-	tar -czf $releaseName.tar.gz TranslatorBinaries/ || { exit 1;}
+	# echo "Deploy flag is set to true. Executing deploy step with release IP =${RELEASE_IP} in Windows..."
+	# cd ${commonLocation}/wntx64 || { exit 1;}
+	# tar -czf $releaseName.tar.gz TranslatorBinaries/ || { exit 1;}
 	
-	echo "curl -u opentools_bot:YL6MtwZ35 -T $releaseName.tar.gz https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/ || { exit 1;}"
+	# echo "curl -u opentools_bot:YL6MtwZ35 -T $releaseName.tar.gz https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/ || { exit 1;}"
 	
-	echo "curl -u opentools_bot:YL6MtwZ35 -T $releaseName.tar.gz https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/">deployStep.txt
+	# echo "curl -u opentools_bot:YL6MtwZ35 -T $releaseName.tar.gz https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/">deployStep.txt
 
-	echo "curl -u opentools_bot:YL6MtwZ35 -T NXJT_Translator_README.txt https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/ || { exit 1;}"
+	# echo "curl -u opentools_bot:YL6MtwZ35 -T NXJT_Translator_README.txt https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/ || { exit 1;}"
 
-	echo "curl -u opentools_bot:YL6MtwZ35 -T NXJT_Translator_README.txt https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/">>deployStep.txt
+	# echo "curl -u opentools_bot:YL6MtwZ35 -T NXJT_Translator_README.txt https://artifacts.industrysoftware.automation.siemens.com/artifactory/generic-local/Opentools/PREVIEW/NXtoJT/$releaseName/">>deployStep.txt
 	
-	cd -
+	# cd -
 	
 else
 	echo "Deploy flag is set to false. Skipping deploy step..."
