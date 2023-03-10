@@ -10,7 +10,7 @@ if %HC_FLAG%==false (
 	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
 ) else (
 	echo "at start"
-	rem call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
+	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
 	echo "i am here"
 	SET WIN_PATH=%UNIT_PATH:/=\%
 	SET "ONE=1"
