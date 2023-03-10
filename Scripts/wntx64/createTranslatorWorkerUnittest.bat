@@ -16,6 +16,7 @@ if %HC_FLAG%==false (
 	SET "ONE=1"
 	SET "ZERO=0"
 	SET initFile=%WIN_PATH%\init.def
+	SET unitcheck=%WIN_PATH%\initcheck.def
 	
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
@@ -37,7 +38,7 @@ if %HC_FLAG%==false (
 			echo=%%B	%%C
 		)
 	)
-	)>%UNIT_PATH%/abc.def
+	)>%unitcheck%
 	echo "i am here2"
 	rem del %initFile%
 	rem rename %WIN_PATH%\init_bk.def "init.def"
