@@ -15,29 +15,28 @@ if %HC_FLAG%==false (
 	SET WIN_PATH=%UNIT_PATH:/=\%
 	SET "ONE=1"
 	SET "ZERO=0"
-	SET initFile=%WIN_PATH%\\init.def
+	SET initFile=%WIN_PATH%\init.def
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
 	  )  do (
 		if "%%B"=="DO_TARI_RECOMPILES" (
 			echo=%%B	%ONE%
+		)else if "%%B"=="DO_SOURCE_RECOMPILES" (
+			echo=%%B	%ONE%
+		)else if "%%B"=="DO_LINK_OPT" (
+			echo=%%B	%ONE%
+		)else if "%%B"=="DO_QAZ" (
+			echo=%%B	%ONE%
+		)else if "%%B"=="DO_DLL_COMPARISON" (
+			echo=%%B	%ONE%
+		)else if "%%B"=="DO_DEBUG" (
+			echo=%%B	%ZERO%
+		) else (
+			echo=%%B	%%C
 		)
-		REM else if "%%B"=="DO_SOURCE_RECOMPILES" (
-			REM echo=%%B	%ONE%
-		REM )else if "%%B"=="DO_LINK_OPT" (
-			REM echo=%%B	%ONE%
-		REM )else if "%%B"=="DO_QAZ" (
-			REM echo=%%B	%ONE%
-		REM )else if "%%B"=="DO_DLL_COMPARISON" (
-			REM echo=%%B	%ONE%
-		REM )else if "%%B"=="DO_DEBUG" (
-			REM echo=%%B	%ZERO%
-		REM ) else (
-			REM echo=%%B	%%C
-		REM )
 	)
-	)>%WIN_PATH%\\initbk.txt
+	)nul 2>&1 >>%UNIT_PATH%\initbk.def
 	echo "i am here2"
 	rem del %initFile%
 	rem rename %UNIT_PATH%//initbk.def "init.def"
