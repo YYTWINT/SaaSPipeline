@@ -4,20 +4,18 @@ SET NX_RELEASE=%1
 SET UNIT_PATH=%2
 SET HC_FLAG=%3
 SET UNIT_BAT="C:\apps\devop_tools\UDU\tools\bin\wnt\unit.bat"
-
+echo "at start"
 
 if %HC_FLAG%==false (
 	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
 ) else (
 	echo "at start"
-	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
+	rem call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
 	echo "i am here"
 	SET WIN_PATH=%UNIT_PATH:/=\%
 	SET "ONE=1"
 	SET "ZERO=0"
-	SET initFile=%WIN_PATH%\init.def
-	SET unitcheck=%WIN_PATH%\initcheck.def
-	
+	SET initFile=%WIN_PATH%\init.def	
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
@@ -38,8 +36,8 @@ if %HC_FLAG%==false (
 			echo=%%B	%%C
 		)
 	)
-	)>%unitcheck%
+	) >%UNIT_PATH%\init_bk.def
 	echo "i am here2"
-	rem del %initFile%
-	rem rename %WIN_PATH%\init_bk.def "init.def"
+	del %initFile%
+	rename %WIN_PATH%\init_bk.def "init.def"
 ) 
