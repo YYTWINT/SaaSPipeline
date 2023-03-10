@@ -15,14 +15,14 @@ if %HC_FLAG%==false (
 	SET WIN_PATH=%UNIT_PATH:/=\%
 	SET "ONE=1"
 	SET "ZERO=0"
-	SET initFile=%WIN_PATH%\init.def
+	SET initFile=%WIN_PATH%\\init.def
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
 	  )  do (
 		if "%%B"=="DO_TARI_RECOMPILES" (
 			echo=%%B	%ONE%
-		)>%UNIT_PATH%/initbk1.txt
+		)
 		REM else if "%%B"=="DO_SOURCE_RECOMPILES" (
 			REM echo=%%B	%ONE%
 		REM )else if "%%B"=="DO_LINK_OPT" (
@@ -36,8 +36,8 @@ if %HC_FLAG%==false (
 		REM ) else (
 			REM echo=%%B	%%C
 		REM )
-	)>%UNIT_PATH%/initbk2.txt
-	)>%UNIT_PATH%/initbk3.txt
+	)
+	)>%WIN_PATH%\\initbk.txt
 	echo "i am here2"
 	rem del %initFile%
 	rem rename %UNIT_PATH%//initbk.def "init.def"
