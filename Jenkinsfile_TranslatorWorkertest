@@ -176,7 +176,7 @@ pipeline {
             steps {
 				script{
 					echo "linux purge group"
-					g//v.LinuxPurge("${params.LinuxStagePath}")
+					//gv.LinuxPurge("${params.LinuxStagePath}")
 					
 				}					
             }
