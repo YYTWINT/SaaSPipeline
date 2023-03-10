@@ -101,7 +101,7 @@ pipeline {
             steps {
 				script{
 					echo "testing stage"
-					//gv.TestLinuxUnit(LinuxbuildDir)
+					gv.TestLinuxUnit(LinuxbuildDir)
 				}					
             }
         }
@@ -163,7 +163,7 @@ pipeline {
             steps {
 				script{
 					echo "linux purge unit"
-					//gv.LinuxPurge("${params.LinuxUnitPath}")
+					gv.LinuxPurge("${params.LinuxUnitPath}")
 					
 				}					
             }
@@ -220,7 +220,7 @@ pipeline {
 		always {
 			script{
 				echo 'echo statement.'	
-				//emailHandle.sendSuccessEmail(LinuxbuildDir,LinuxstageDir)
+				emailHandle.sendSuccessEmail(LinuxbuildDir,LinuxstageDir)
 			}					
 		}
 		
