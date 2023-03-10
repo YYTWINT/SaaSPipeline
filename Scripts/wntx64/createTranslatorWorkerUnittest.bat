@@ -36,7 +36,7 @@ if %HC_FLAG%==false (
 			echo=%%B	%%C
 		)
 	)
-	)nul 2>&1 >>%UNIT_PATH%\initbk.def
+	)>>%UNIT_PATH%\initbk.def
 	echo "i am here2"
 	rem del %initFile%
 	rem rename %UNIT_PATH%//initbk.def "init.def"
