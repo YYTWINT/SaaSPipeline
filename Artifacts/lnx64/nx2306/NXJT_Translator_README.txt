@@ -60,6 +60,7 @@ SECTION 3 - Installation Instructions and Usage
 	- Following Linux packages are prerequisites to run translator binaries -
 			fontconfig 
 			ksh
+			libgomp
 			  
 	- Set following environment variables -
 			UGII_BASE_DIR=.../app                  ---> This is base directory containing translator binaries.
