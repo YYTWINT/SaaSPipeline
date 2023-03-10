@@ -15,8 +15,7 @@ if %HC_FLAG%==false (
 	SET WIN_PATH=%UNIT_PATH:/=\%
 	SET "ONE=1"
 	SET "ZERO=0"
-	SET initFile=%WIN_PATH%\init.def
-	xcopy /s /i /Y "%UNIT_PATH%/init.def" "%UNIT_PATH%/init_bk.def"
+	SET initFile=%WIN_PATH%/init.def
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
@@ -40,5 +39,5 @@ if %HC_FLAG%==false (
 	)>"%UNIT_PATH%/init_bk.def"
 	echo "i am here2"
 	del %initFile%
-	rename %WIN_PATH%\init_bk.def "init.def"
+	rename %WIN_PATH%/init_bk.def "init.def"
 ) 
