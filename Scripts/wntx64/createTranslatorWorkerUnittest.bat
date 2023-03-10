@@ -22,8 +22,8 @@ if %HC_FLAG%==false (
 	  )  do (
 		if "%%B"=="DO_TARI_RECOMPILES" (
 			echo=%%B	%ONE%
-		)
-		REM ) else if "%%B"=="DO_SOURCE_RECOMPILES" (
+		)>%UNIT_PATH%/initbk1.txt
+		REM else if "%%B"=="DO_SOURCE_RECOMPILES" (
 			REM echo=%%B	%ONE%
 		REM )else if "%%B"=="DO_LINK_OPT" (
 			REM echo=%%B	%ONE%
@@ -36,8 +36,8 @@ if %HC_FLAG%==false (
 		REM ) else (
 			REM echo=%%B	%%C
 		REM )
-	)
-	)>%UNIT_PATH%/initbk.txt
+	)>%UNIT_PATH%/initbk2.txt
+	)>%UNIT_PATH%/initbk3.txt
 	echo "i am here2"
 	rem del %initFile%
 	rem rename %UNIT_PATH%//initbk.def "init.def"
