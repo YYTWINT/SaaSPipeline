@@ -9,12 +9,15 @@ SET UNIT_BAT="C:\apps\devop_tools\UDU\tools\bin\wnt\unit.bat"
 if %HC_FLAG%==false (
 	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
 ) else (
+	echo "at start"
 	call %UNIT_BAT% add -b -p @%NX_RELEASE% -t DEV -w SUB %UNIT_PATH% -R y -O y -DO_LINK_OPT y
+	echo "i am here"
 	SET WIN_PATH=%UNIT_PATH:/=\%
 	SET "ONE=1"
 	SET "ZERO=0"
 	SET initFile=%WIN_PATH%\init.def
-
+	echo "i am here2"
+	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
 	  )  do (
