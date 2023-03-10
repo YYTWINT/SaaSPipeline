@@ -22,19 +22,20 @@ if %HC_FLAG%==false (
 	  )  do (
 		if "%%B"=="DO_TARI_RECOMPILES" (
 			echo=%%B	%ONE%
-		) else if "%%B"=="DO_SOURCE_RECOMPILES" (
-			echo=%%B	%ONE%
-		)else if "%%B"=="DO_LINK_OPT" (
-			echo=%%B	%ONE%
-		)else if "%%B"=="DO_QAZ" (
-			echo=%%B	%ONE%
-		)else if "%%B"=="DO_DLL_COMPARISON" (
-			echo=%%B	%ONE%
-		)else if "%%B"=="DO_DEBUG" (
-			echo=%%B	%ZERO%
-		) else (
-			echo=%%B	%%C
 		)
+		REM ) else if "%%B"=="DO_SOURCE_RECOMPILES" (
+			REM echo=%%B	%ONE%
+		REM )else if "%%B"=="DO_LINK_OPT" (
+			REM echo=%%B	%ONE%
+		REM )else if "%%B"=="DO_QAZ" (
+			REM echo=%%B	%ONE%
+		REM )else if "%%B"=="DO_DLL_COMPARISON" (
+			REM echo=%%B	%ONE%
+		REM )else if "%%B"=="DO_DEBUG" (
+			REM echo=%%B	%ZERO%
+		REM ) else (
+			REM echo=%%B	%%C
+		REM )
 	)
 	)>%UNIT_PATH%/initbk.txt
 	echo "i am here2"
