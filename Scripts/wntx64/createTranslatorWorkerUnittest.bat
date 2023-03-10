@@ -16,7 +16,7 @@ if %HC_FLAG%==false (
 	SET "ONE=1"
 	SET "ZERO=0"
 	SET initFile=%WIN_PATH%\init.def
-	echo "i am here2"
+	
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
@@ -38,6 +38,7 @@ if %HC_FLAG%==false (
 		)
 	)
 	) >%WIN_PATH%\init_bk.def
-	del %initFile%
-	rename %WIN_PATH%\init_bk.def "init.def"
+	echo "i am here2"
+	rem del %initFile%
+	rem rename %WIN_PATH%\init_bk.def "init.def"
 ) 
