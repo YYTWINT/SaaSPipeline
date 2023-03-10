@@ -16,7 +16,7 @@ if %HC_FLAG%==false (
 	SET "ONE=1"
 	SET "ZERO=0"
 	SET initFile=%WIN_PATH%\init.def
-	xcopy /s /i /Y "%WIN_PATH%\init.def" "%WIN_PATH%\init_bk.def"
+	xcopy /s /i /Y "%UNIT_BAT%/init.def" "%UNIT_BAT%/init_bk.def"
 	
 	( for /f "tokens=1,2* delims=: " %%A in (
 		'findstr /N "^" %initFile%'
